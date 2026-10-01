@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.16) transparent;
+  }
+
+  ::selection {
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* Seamless minimal browser scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.38);
+  }
+}
+
+/* Word Reveal Logic */
+.word-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: -0.2em;
+  padding-bottom: 0.2em;
+  vertical-align: top;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.word-inner.is-revealed,
+.is-revealed .word-inner,
+[data-revealed="true"] .word-inner {
+  transform: translateY(0%);
+}
+
+/* Hide scrollbar while preserving standard overflow-x */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Menu Grain Overlay with SVG Turbulence */
+@keyframes grain-jitter {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-3%, -5%); }
+  20% { transform: translate(4%, -8%); }
+  30% { transform: translate(-6%, 6%); }
+  40% { transform: translate(6%, -3%); }
+  50% { transform: translate(-4%, 8%); }
+  60% { transform: translate(7%, -6%); }
+  70% { transform: translate(-5%, -4%); }
+  80% { transform: translate(4%, 7%); }
+  90% { transform: translate(-3%, 3%); }
+}
+
+.grain-overlay {
+  position: relative;
+}
+
+.grain-overlay::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  animation: grain-jitter 0.6s steps(2) infinite;
+  opacity: 0.75;
+  z-index: 1;
+}
+
+/* Orb styles */
+@keyframes orb-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orb-spin {
+  animation: orb-spin 20s linear infinite;
+}
+
+.orb-gradient {
+  background: radial-gradient(circle at 40% 40%, #4470f6 0%, #eb5939 68%, transparent 78%);
+  filter: blur(60px);
+}
+
+/* Nav load animation */
+@keyframes revealNav {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-on-load {
+  opacity: 0;
+  animation: revealNav 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.25s;
+}
+
+/* Underline hover effect for Explore our services */
+.link-hover-border {
+  position: relative;
+}
+.link-hover-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-hover-border:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}

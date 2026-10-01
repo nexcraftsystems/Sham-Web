@@ -1,0 +1,6 @@
+{
+  "name": "Rejouice — The Venture Agency",
+  "description": "High-fidelity recreation of rejouice.com with word-by-word stagger animations, rotating orb, parallax hero, and animated SVG turbulence grain overlay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
