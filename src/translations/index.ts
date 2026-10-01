@@ -29,6 +29,8 @@ export const translations = {
       autoTracking: 'Automatic tracking · Trade as usual',
       claimPrizeBtn: (lot: string) => `Claim ${lot} Prize`,
       registerBtn: 'Register',
+      viewDetails: 'View Details to Claim',
+      hideDetails: 'Hide Details',
       tiers: [
         {
           lot: '100 LOT',
@@ -202,6 +204,8 @@ export const translations = {
       autoTracking: 'Pelacakan otomatis · Trading seperti biasa',
       claimPrizeBtn: (lot: string) => `Klaim Hadiah ${lot}`,
       registerBtn: 'Daftar',
+      viewDetails: 'Lihat Detail untuk Klaim',
+      hideDetails: 'Sembunyikan Detail',
       tiers: [
         {
           lot: '100 LOT',

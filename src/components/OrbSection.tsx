@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TelegramIcon, ArrowUpRight } from './Icons';
 import { RevealText } from './RevealText';
 import { useLanguage } from '../context/LanguageContext';
@@ -18,6 +18,16 @@ interface OrbSectionProps {
 export function OrbSection({ onOpenTelegram, onOpenRegister }: OrbSectionProps) {
   const { language } = useLanguage();
   const t = translations[language].lotTargets;
+
+  // Track expanded state of cards on mobile screens
+  const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+
+  const toggleCard = (index: number) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   const prizeImages = [
     prizeCash,
@@ -57,112 +67,149 @@ export function OrbSection({ onOpenTelegram, onOpenRegister }: OrbSectionProps) 
         </div>
 
         {/* Dedicated Stacked Reward Cards */}
-        <div className="space-y-8 md:space-y-12">
-          {t.tiers.map((tier, idx) => (
-            <div
-              key={idx}
-              className="group relative rounded-3xl bg-white border border-black/10 hover:border-black/30 transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden p-6 sm:p-8 md:p-10"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
-                {/* Prize Picture */}
-                <div className="lg:col-span-5 relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-900 shadow-md">
-                  <img
-                    src={prizeImages[idx]}
-                    alt={tier.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-white text-xs font-mono uppercase tracking-wider font-semibold">
-                      {tier.lot}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 right-4 z-10">
-                    <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-black text-[11px] font-mono">
-                      {tier.badge}
-                    </span>
-                  </div>
-                </div>
+        <div className="space-y-6 md:space-y-10">
+          {t.tiers.map((tier, idx) => {
+            const isExpanded = !!expandedCards[idx];
 
-                {/* Prize Details & Actions */}
-                <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs uppercase tracking-[0.2em] font-mono text-black/50">
-                        {t.milestonePrefix}{idx + 1}
-                      </span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      <span className="text-xs font-mono text-emerald-700 font-medium">
-                        {t.activeReward}
+            return (
+              <div
+                key={idx}
+                className="group relative rounded-3xl bg-white border border-black/10 hover:border-black/30 transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden p-5 sm:p-7 md:p-10"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-start lg:items-center">
+                  {/* Prize Picture & Mobile Summary Header */}
+                  <div className="lg:col-span-5 relative aspect-[16/11] sm:aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-900 shadow-md">
+                    <img
+                      src={prizeImages[idx]}
+                      alt={tier.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 z-10">
+                      <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-black/85 backdrop-blur-md text-white text-xs font-mono uppercase tracking-wider font-semibold">
+                        {tier.lot}
                       </span>
                     </div>
-
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-[#111] mb-2">
-                      {tier.title}
-                    </h3>
-
-                    <p className="text-base sm:text-lg text-black/70 font-light leading-relaxed mb-6">
-                      {tier.desc}
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      <div className="p-3.5 sm:p-4 rounded-2xl bg-[#faf8f5] border border-black/8 hover:border-black/20 transition-all">
-                        <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-black/50 block mb-1">
-                          {t.lotTargetLabel}
-                        </span>
-                        <span className="text-sm sm:text-base font-semibold tracking-tight text-[#111] block">
-                          {tier.lot}
-                        </span>
-                      </div>
-                      <div className="p-3.5 sm:p-4 rounded-2xl bg-[#faf8f5] border border-black/8 hover:border-black/20 transition-all">
-                        <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-black/50 block mb-1">
-                          {t.rewardTypeLabel}
-                        </span>
-                        <span className="text-sm sm:text-base font-semibold tracking-tight text-[#111] block">
-                          {tier.type}
-                        </span>
-                      </div>
-                      <div className="p-3.5 sm:p-4 rounded-2xl bg-[#faf8f5] border border-black/8 hover:border-black/20 transition-all">
-                        <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-black/50 block mb-1">
-                          {t.claimSupportLabel}
-                        </span>
-                        <span className="text-sm sm:text-base font-semibold tracking-tight text-[#111] block">
-                          {t.directAdmin}
-                        </span>
-                      </div>
+                    <div className="absolute bottom-3.5 right-3.5 sm:bottom-4 sm:right-4 z-10">
+                      <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/90 backdrop-blur-md text-black text-[10px] sm:text-[11px] font-mono">
+                        {tier.badge}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Card Bottom: Admin Claim CTA */}
-                  <div className="pt-6 border-t border-black/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-2 text-xs font-mono text-black/60">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>{t.autoTracking}</span>
+                  {/* Prize Details & Actions */}
+                  <div className="lg:col-span-7 flex flex-col justify-between space-y-4 lg:space-y-6">
+                    {/* Header Zone: Always visible on both mobile and desktop */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-xs uppercase tracking-[0.2em] font-mono text-black/50">
+                          {t.milestonePrefix}{idx + 1}
+                        </span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        <span className="text-xs font-mono text-emerald-700 font-medium">
+                          {t.activeReward}
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-[#111] mb-2">
+                        {tier.title}
+                      </h3>
+
+                      {/* Mobile Expand / Collapse Toggle Bar (Visible ONLY on mobile screens < lg) */}
+                      <div className="lg:hidden pt-2">
+                        <button
+                          type="button"
+                          onClick={() => toggleCard(idx)}
+                          className="w-full py-2.5 px-4 rounded-xl bg-black/5 active:bg-black/10 hover:bg-black/8 text-xs font-semibold font-mono tracking-wider uppercase text-black flex items-center justify-between transition-colors cursor-pointer"
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className={`w-2 h-2 rounded-full ${isExpanded ? 'bg-black' : 'bg-emerald-500 animate-pulse'}`} />
+                            <span>{isExpanded ? t.hideDetails : t.viewDetails}</span>
+                          </span>
+                          <svg
+                            className={`w-4 h-4 transition-transform duration-300 ${
+                              isExpanded ? 'rotate-180 text-black' : 'rotate-0 text-black/60'
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-3 w-full sm:w-auto">
-                      <button
-                        type="button"
-                        onClick={onOpenTelegram}
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#229ED9] hover:bg-[#1b8ec4] text-white text-xs font-semibold tracking-wide transition-all shadow-sm hover:scale-105 cursor-pointer"
-                      >
-                        <TelegramIcon className="w-4 h-4" />
-                        <span>{t.claimPrizeBtn(tier.lot)}</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={onOpenRegister}
-                        className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-full bg-black hover:bg-neutral-800 text-white text-xs font-semibold tracking-wide transition-all hover:scale-105 cursor-pointer"
-                      >
-                        <span>{t.registerBtn}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
+                    {/* Collapsible Details Body:
+                        Hidden on mobile when collapsed; Always visible on desktop (lg:block) */}
+                    <div
+                      className={`${
+                        isExpanded ? 'block animate-in fade-in duration-300' : 'hidden'
+                      } lg:block space-y-6 pt-2 lg:pt-0`}
+                    >
+                      <p className="text-base sm:text-lg text-black/70 font-light leading-relaxed">
+                        {tier.desc}
+                      </p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="p-3.5 sm:p-4 rounded-2xl bg-[#faf8f5] border border-black/8 hover:border-black/20 transition-all">
+                          <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-black/50 block mb-1">
+                            {t.lotTargetLabel}
+                          </span>
+                          <span className="text-sm sm:text-base font-semibold tracking-tight text-[#111] block">
+                            {tier.lot}
+                          </span>
+                        </div>
+                        <div className="p-3.5 sm:p-4 rounded-2xl bg-[#faf8f5] border border-black/8 hover:border-black/20 transition-all">
+                          <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-black/50 block mb-1">
+                            {t.rewardTypeLabel}
+                          </span>
+                          <span className="text-sm sm:text-base font-semibold tracking-tight text-[#111] block">
+                            {tier.type}
+                          </span>
+                        </div>
+                        <div className="p-3.5 sm:p-4 rounded-2xl bg-[#faf8f5] border border-black/8 hover:border-black/20 transition-all">
+                          <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-black/50 block mb-1">
+                            {t.claimSupportLabel}
+                          </span>
+                          <span className="text-sm sm:text-base font-semibold tracking-tight text-[#111] block">
+                            {t.directAdmin}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Card Bottom: Admin Claim CTA */}
+                      <div className="pt-6 border-t border-black/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-2 text-xs font-mono text-black/60">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                          <span>{t.autoTracking}</span>
+                        </div>
+
+                        <div className="flex items-center gap-3 w-full sm:w-auto">
+                          <button
+                            type="button"
+                            onClick={onOpenTelegram}
+                            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#229ED9] hover:bg-[#1b8ec4] text-white text-xs font-semibold tracking-wide transition-all shadow-sm hover:scale-105 cursor-pointer"
+                          >
+                            <TelegramIcon className="w-4 h-4" />
+                            <span>{t.claimPrizeBtn(tier.lot)}</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={onOpenRegister}
+                            className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-full bg-black hover:bg-neutral-800 text-white text-xs font-semibold tracking-wide transition-all hover:scale-105 cursor-pointer"
+                          >
+                            <span>{t.registerBtn}</span>
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
