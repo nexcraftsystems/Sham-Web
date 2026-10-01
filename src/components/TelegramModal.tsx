@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CloseIcon, TelegramIcon, ArrowUpRight } from './Icons';
 import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface TelegramModalProps {
   isOpen: boolean;
@@ -8,7 +9,9 @@ interface TelegramModalProps {
 }
 
 export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
+  const t = translations[language].telegramModal;
+
   const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-md bg-[#faf8f5] text-[#111] rounded-2xl shadow-2xl overflow-hidden border border-black/10">
         {/* Header */}
         <div className="px-6 py-5 border-b border-black/10 flex justify-between items-center bg-[#faf8f5]">
@@ -44,9 +47,9 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
             </div>
             <div>
               <h3 className="text-lg font-semibold tracking-tight text-[#111]">
-                {t('Telegram Community & Admin', 'Komunitas & Admin Telegram')}
+                {t.title}
               </h3>
-              <p className="text-xs text-black/50 font-mono">Trade &amp; Claim Network</p>
+              <p className="text-xs text-black/50 font-mono">{t.subtitle}</p>
             </div>
           </div>
 
@@ -66,16 +69,13 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
             <div className="flex justify-between items-start">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-widest text-[#229ED9] font-semibold">
-                  {t('Official Channel', 'Channel Resmi')}
+                  {t.officialChannel}
                 </span>
                 <div className="text-base font-semibold text-[#111]">
-                  @TradeAndClaimOfficial
+                  {t.channelHandle}
                 </div>
-                <p className="text-xs text-black/60 font-light mt-0.5">
-                  {t(
-                    'Daily lot leaderboards, prize announcements & monthly draws.',
-                    'Papan peringkat lot harian, pengumuman hadiah & undian bulanan.'
-                  )}
+                <p className="text-xs text-black/60 mt-0.5">
+                  {t.channelDesc}
                 </p>
               </div>
             </div>
@@ -87,15 +87,15 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#229ED9] hover:bg-[#1a8dc2] text-white text-xs font-semibold transition-colors"
               >
-                <span>{t('Open Channel', 'Buka Channel')}</span>
+                <span>{t.openChannel}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
               <button
                 type="button"
-                onClick={() => handleCopy('@TradeAndClaimOfficial', 'channel')}
+                onClick={() => handleCopy(t.channelHandle, 'channel')}
                 className="px-3 py-2 rounded-lg border border-black/15 hover:bg-black hover:text-white text-xs font-mono transition-colors cursor-pointer"
               >
-                {copied === 'channel' ? t('Copied!', 'Disalin!') : t('Copy', 'Salin')}
+                {copied === 'channel' ? t.copied : t.copy}
               </button>
             </div>
           </div>
@@ -105,16 +105,13 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
             <div className="flex justify-between items-start">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-600 font-semibold">
-                  {t('Admin Support (Claim Prizes)', 'Layanan Admin (Klaim Hadiah)')}
+                  {t.adminSupport}
                 </span>
                 <div className="text-base font-semibold text-[#111]">
-                  @TradeAndClaimAdmin
+                  {t.adminHandle}
                 </div>
-                <p className="text-xs text-black/60 font-light mt-0.5">
-                  {t(
-                    'Send your account number and target reached to receive instant payouts.',
-                    'Kirim nomor akun dan target yang dicapai untuk menerima hadiah secara langsung.'
-                  )}
+                <p className="text-xs text-black/60 mt-0.5">
+                  {t.adminDesc}
                 </p>
               </div>
             </div>
@@ -126,15 +123,15 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-black hover:bg-neutral-800 text-white text-xs font-semibold transition-colors"
               >
-                <span>{t('Message Admin Directly', 'Chat Admin Langsung')}</span>
+                <span>{t.messageAdmin}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
               <button
                 type="button"
-                onClick={() => handleCopy('@TradeAndClaimAdmin', 'admin')}
+                onClick={() => handleCopy(t.adminHandle, 'admin')}
                 className="px-3 py-2 rounded-lg border border-black/15 hover:bg-black hover:text-white text-xs font-mono transition-colors cursor-pointer"
               >
-                {copied === 'admin' ? t('Copied!', 'Disalin!') : t('Copy', 'Salin')}
+                {copied === 'admin' ? t.copied : t.copy}
               </button>
             </div>
           </div>
@@ -142,13 +139,13 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
 
         {/* Footer */}
         <div className="px-6 py-4 bg-black/5 border-t border-black/10 flex items-center justify-between text-xs text-black/60 font-mono">
-          <span>{t('Response time: Under 15 mins', 'Waktu respon: Kurang dari 15 menit')}</span>
+          <span>{t.responseTime}</span>
           <button
             type="button"
             onClick={onClose}
             className="text-black font-semibold hover:underline cursor-pointer"
           >
-            {t('Close', 'Tutup')}
+            {t.close}
           </button>
         </div>
       </div>

@@ -1,27 +1,45 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type Language = 'en' | 'id';
 
 interface LanguageContextType {
-  lang: Language;
-  setLang: (lang: Language) => void;
-  toggleLang: () => void;
-  t: (en: string, id: string) => string;
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  toggleLanguage: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('trade_claim_lang');
+      if (saved === 'en' || saved === 'id') return saved;
+      // Default to English or Indonesian based on browser
+      if (navigator.language && navigator.language.startsWith('id')) {
+        return 'id';
+      }
+    }
+    return 'en';
+  });
 
-  const toggleLang = () => {
-    setLang((prev) => (prev === 'en' ? 'id' : 'en'));
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('trade_claim_lang', lang);
+    }
   };
 
-  const t = (en: string, id: string) => (lang === 'en' ? en : id);
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'id' : 'en');
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggleLang, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

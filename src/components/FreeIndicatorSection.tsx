@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowUpRight } from './Icons';
 import { RevealText } from './RevealText';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface FreeIndicatorSectionProps {
   onOpenRegister: () => void;
@@ -10,6 +12,9 @@ interface FreeIndicatorSectionProps {
 export function FreeIndicatorSection({
   onOpenRegister,
 }: FreeIndicatorSectionProps) {
+  const { language } = useLanguage();
+  const t = translations[language].freeIndicator;
+
   return (
     <section
       id="free-indicator"
@@ -19,7 +24,7 @@ export function FreeIndicatorSection({
         {/* Left: All wording, refined and not too big */}
         <div className="max-w-2xl">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-normal tracking-tight text-white leading-snug">
-            <RevealText text="Register now and claim your free indicator" />
+            <RevealText key={`free-ind-${language}`} text={t.heading} />
           </h2>
         </div>
 
@@ -30,7 +35,7 @@ export function FreeIndicatorSection({
             onClick={onOpenRegister}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md hover:scale-105 cursor-pointer whitespace-nowrap"
           >
-            <span>Register Now</span>
+            <span>{t.registerNow}</span>
             <ArrowUpRight className="w-4 h-4" />
           </button>
         </div>

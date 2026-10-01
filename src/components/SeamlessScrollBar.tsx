@@ -1,18 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 export function SeamlessScrollBar() {
+  const { language } = useLanguage();
+  const t = translations[language].scrollRail;
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [activeSection, setActiveSection] = useState('Top');
+  const [activeId, setActiveId] = useState('top');
   const railRef = useRef<HTMLDivElement>(null);
 
   const sections = [
-    { id: 'top', label: 'Top' },
-    { id: 'intro', label: 'Overview' },
-    { id: 'lot-targets', label: 'Promo 01' },
-    { id: 'how-to-claim', label: 'Claim' },
-    { id: 'free-indicator', label: 'Indicator' },
+    { id: 'top', label: t.top },
+    { id: 'intro', label: t.overview },
+    { id: 'lot-targets', label: t.promo01 },
+    { id: 'how-to-claim', label: t.claim },
+    { id: 'free-indicator', label: t.indicator },
   ];
 
   useEffect(() => {
@@ -23,12 +28,12 @@ export function SeamlessScrollBar() {
         setScrollProgress(progress);
       }
 
-      // Determine active section
+      // Determine active section id
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i].id);
         if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i].label);
+          setActiveId(sections[i].id);
           break;
         }
       }
@@ -37,7 +42,7 @@ export function SeamlessScrollBar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sections]);
 
   const scrollToRatio = (ratio: number) => {
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -55,7 +60,7 @@ export function SeamlessScrollBar() {
     scrollToRatio(ratio);
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = () => {
     setIsDragging(true);
     const onMouseMove = (moveEvent: MouseEvent) => {
       if (!railRef.current) return;
@@ -80,6 +85,7 @@ export function SeamlessScrollBar() {
   };
 
   const percent = Math.round(scrollProgress * 100);
+  const currentSection = sections.find((s) => s.id === activeId) || sections[0];
 
   return (
     <aside
@@ -109,7 +115,7 @@ export function SeamlessScrollBar() {
             <div
               key={idx}
               className={`w-1 h-1 rounded-full transition-all duration-300 ${
-                activeSection === sec.label
+                activeId === sec.id
                   ? 'bg-black scale-150'
                   : 'bg-black/20 group-hover:bg-black/40'
               }`}
@@ -145,7 +151,7 @@ export function SeamlessScrollBar() {
                 : 'opacity-0 translate-x-2'
             }`}
           >
-            <span className="font-semibold">{activeSection}</span>
+            <span className="font-semibold">{currentSection.label}</span>
             <span className="text-white/40">·</span>
             <span className="text-emerald-400 font-bold">{percent}%</span>
           </div>
