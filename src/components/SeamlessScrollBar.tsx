@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../translations';
 
 export function SeamlessScrollBar() {
   const { language } = useLanguage();
-  const t = translations[language].scrollRail;
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -13,11 +11,11 @@ export function SeamlessScrollBar() {
   const railRef = useRef<HTMLDivElement>(null);
 
   const sections = [
-    { id: 'top', label: t.top },
-    { id: 'intro', label: t.overview },
-    { id: 'lot-targets', label: t.promo01 },
-    { id: 'how-to-claim', label: t.claim },
-    { id: 'free-indicator', label: t.indicator },
+    { id: 'top', label: language === 'id' ? 'Atas' : 'Top' },
+    { id: 'process', label: language === 'id' ? '01 // Proses' : '01 // Process' },
+    { id: 'rewards', label: language === 'id' ? '02 // Hadiah' : '02 // Rewards' },
+    { id: 'indicator', label: language === 'id' ? '03 // Indikator' : '03 // Indicator' },
+    { id: 'registration', label: language === 'id' ? '04 // Daftar' : '04 // Register' },
   ];
 
   useEffect(() => {
@@ -90,7 +88,7 @@ export function SeamlessScrollBar() {
   return (
     <aside
       aria-label="Page navigation scroll rail"
-      className="fixed right-2 md:right-3.5 top-0 bottom-0 z-50 flex items-center justify-center pointer-events-none select-none"
+      className="fixed right-2 md:right-3.5 top-0 bottom-0 z-50 hidden lg:flex items-center justify-center pointer-events-none select-none"
     >
       {/* Interactive Rail Container */}
       <div
@@ -104,8 +102,8 @@ export function SeamlessScrollBar() {
         <div
           className={`h-full rounded-full transition-all duration-300 ${
             isHovered || isDragging
-              ? 'w-1 bg-black/15 shadow-sm'
-              : 'w-[2px] bg-black/8'
+              ? 'w-1 bg-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.3)]'
+              : 'w-[2px] bg-white/10'
           }`}
         />
 
@@ -116,8 +114,8 @@ export function SeamlessScrollBar() {
               key={idx}
               className={`w-1 h-1 rounded-full transition-all duration-300 ${
                 activeId === sec.id
-                  ? 'bg-black scale-150'
-                  : 'bg-black/20 group-hover:bg-black/40'
+                  ? 'bg-cyan-400 scale-150 shadow-[0_0_8px_rgba(6,182,212,0.8)]'
+                  : 'bg-white/20 group-hover:bg-white/40'
               }`}
             />
           ))}
@@ -138,22 +136,22 @@ export function SeamlessScrollBar() {
           <div
             className={`rounded-full transition-all duration-200 ${
               isHovered || isDragging
-                ? 'w-2 h-7 bg-black shadow-md scale-110'
-                : 'w-1.5 h-5 bg-black/70 hover:bg-black'
+                ? 'w-2 h-7 bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.8)] scale-110'
+                : 'w-1.5 h-5 bg-cyan-500/70 hover:bg-cyan-400'
             }`}
           />
 
           {/* Floating Info Tag revealing current section and % */}
           <div
-            className={`absolute right-5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/90 text-white backdrop-blur-md text-[10px] font-mono whitespace-nowrap shadow-xl transition-all duration-300 pointer-events-none ${
+            className={`absolute right-5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/90 text-white border border-cyan-500/30 backdrop-blur-md text-[10px] font-mono whitespace-nowrap shadow-xl transition-all duration-300 pointer-events-none ${
               isHovered || isDragging
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-2'
             }`}
           >
-            <span className="font-semibold">{currentSection.label}</span>
+            <span className="font-semibold text-white">{currentSection.label}</span>
             <span className="text-white/40">·</span>
-            <span className="text-emerald-400 font-bold">{percent}%</span>
+            <span className="text-cyan-400 font-bold">{percent}%</span>
           </div>
         </div>
       </div>

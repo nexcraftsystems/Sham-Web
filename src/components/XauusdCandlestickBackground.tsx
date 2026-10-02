@@ -8,7 +8,15 @@ interface Candle {
   volume: number;
 }
 
-export function XauusdCandlestickBackground() {
+interface XauusdCandlestickBackgroundProps {
+  className?: string;
+  opacity?: string;
+}
+
+export function XauusdCandlestickBackground({
+  className = '',
+  opacity = 'opacity-40',
+}: XauusdCandlestickBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -105,12 +113,12 @@ export function XauusdCandlestickBackground() {
         return height - ((p - minP) / (maxP - minP)) * (height * 0.72) - height * 0.15;
       };
 
-      // Draw subtle horizontal grid price levels without symbol labels
+      // Draw subtle horizontal grid price levels for dark theme
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 6]);
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
       ctx.font = '10px monospace';
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
 
       const priceInterval = 5;
       const startGridPrice = Math.floor(minP / priceInterval) * priceInterval;
@@ -127,11 +135,11 @@ export function XauusdCandlestickBackground() {
       }
       ctx.setLineDash([]);
 
-      // Draw Candlesticks (Green for bullish, Red for bearish with ~50% saturation tone)
+      // Draw Candlesticks (Green for bullish, Red for bearish with cyber tone)
       const bullishGreen = 'rgba(34, 197, 94, 0.55)'; // Bullish emerald
       const bearishRed = 'rgba(239, 68, 68, 0.55)'; // Bearish coral red
-      const bullishWick = 'rgba(22, 163, 74, 0.65)';
-      const bearishWick = 'rgba(220, 38, 38, 0.65)';
+      const bullishWick = 'rgba(34, 197, 94, 0.75)';
+      const bearishWick = 'rgba(239, 68, 68, 0.75)';
 
       const volumeBaseY = height - 10;
       const maxVolumeHeight = height * 0.12;
@@ -221,15 +229,15 @@ export function XauusdCandlestickBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
-      {/* 50% Saturated Live Canvas */}
+    <div className={`absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0 ${className}`}>
+      {/* Live Animated Candlestick Canvas */}
       <canvas
         ref={canvasRef}
-        className="w-full h-full object-cover filter saturate-50 contrast-95 opacity-65"
+        className={`w-full h-full object-cover filter saturate-75 contrast-100 ${opacity}`}
       />
 
-      {/* Subtle bottom fade to blend with page flow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#faf8f5]/40 via-transparent to-[#faf8f5]/60 pointer-events-none" />
+      {/* Cyber dark gradient fade to blend seamlessly */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/60 via-transparent to-[#030303]/80 pointer-events-none" />
     </div>
   );
 }

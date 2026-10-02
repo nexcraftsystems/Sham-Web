@@ -35,7 +35,7 @@ export function CustomCursor({ cursorText }: CustomCursorProps) {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     const loop = () => {
-      const ease = 0.2;
+      const ease = 0.22;
       currentPos.current.x += (targetPos.current.x - currentPos.current.x) * ease;
       currentPos.current.y += (targetPos.current.y - currentPos.current.y) * ease;
 
@@ -60,17 +60,19 @@ export function CustomCursor({ cursorText }: CustomCursorProps) {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-[100] transition-[width,height,background-color] duration-300 ease-out flex items-center justify-center rounded-full opacity-0"
+      className="fixed top-0 left-0 pointer-events-none z-[100] transition-[width,height,background-color] duration-200 ease-out hidden md:flex items-center justify-center rounded-full opacity-0"
       style={{
-        width: isExpanded ? '72px' : '10px',
-        height: isExpanded ? '72px' : '10px',
-        backgroundColor: isExpanded ? '#000000' : '#111111',
-        boxShadow: isExpanded ? '0 10px 30px rgba(0,0,0,0.3)' : 'none',
+        width: isExpanded ? '64px' : '8px',
+        height: isExpanded ? '64px' : '8px',
+        backgroundColor: isExpanded ? 'rgba(6, 182, 212, 0.85)' : '#06b6d4',
+        boxShadow: isExpanded
+          ? '0 0 30px rgba(6, 182, 212, 0.8)'
+          : '0 0 15px rgba(6, 182, 212, 0.9)',
         willChange: 'transform',
       }}
     >
       {isExpanded && (
-        <span className="text-[11px] font-mono tracking-widest uppercase text-white font-medium select-none">
+        <span className="text-[10px] font-mono tracking-widest uppercase text-black font-bold select-none">
           {cursorText}
         </span>
       )}
