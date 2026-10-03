@@ -4,7 +4,6 @@ import {
   Zap,
   Gift,
   Bot,
-  Flame,
   Coins,
   ShieldCheck,
   Smartphone,
@@ -17,23 +16,29 @@ export function TechMarquee() {
 
   const marqueeItems = [
     {
+      icon: Zap,
+      text: 'TRADE & CLAIM X SELF REBATE 10USD',
+    },
+    {
       icon: Bot,
       text:
         language === 'id'
-          ? 'FREE TRIAL SEMINGGU INDICATOR BERNILAI 10K USD'
-          : 'FREE 1-WEEK VIP INDICATOR TRIAL ($10,000 USD VALUE)',
+          ? 'FREE TRIAL SEMINGGU VIP INDIKATOR WORTH 10K USD'
+          : 'FREE 1-WEEK VIP INDICATOR WORTH $10,000 USD',
     },
-    { icon: Zap, text: '10 LOT SELF REBATE' },
-    { icon: Coins, text: 'USD 14 / LOT' },
     {
-      icon: Gift,
+      icon: Trophy,
       text:
         language === 'id'
-          ? 'CONTACT SUPPORT FOR CLAIM 14USD FREE NOW'
-          : 'CONTACT SUPPORT FOR CLAIM 14USD FREE NOW',
+          ? 'TERSEDIA LANGSUNG DI TRADINGVIEW'
+          : 'AVAILABLE DIRECTLY IN TRADINGVIEW',
     },
     {
       icon: Coins,
+      text: 'SELF REBATE 10USD / LOT',
+    },
+    {
+      icon: Gift,
       text: language === 'id' ? '100 LOT · CASH 2.2 JUTA' : '100 LOT · CASH 2.2M IDR',
     },
     { icon: Smartphone, text: '200 LOT · IPAD 11' },
@@ -56,18 +61,18 @@ export function TechMarquee() {
       icon: ShieldCheck,
       text:
         language === 'id'
-          ? 'PELACAKAN REBATE REAL-TIME OTOMATIS'
-          : 'AUTOMATED REAL-TIME REBATE TRACKING',
+          ? 'KLAIM RESMI & INSTAN VIA TELEGRAM'
+          : 'INSTANT OFFICIAL CLAIMS VIA TELEGRAM',
     },
   ];
 
   return (
-    <div className="w-full border-y border-white/8 bg-black/40 backdrop-blur-md py-3.5 overflow-hidden relative select-none">
+    <div className="reveal-division w-full border-y border-white/8 bg-black/40 backdrop-blur-md py-3.5 overflow-hidden relative select-none">
       {/* Subtle Cyan Gradient Edges */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
 
-      {/* Infinite Scrolling Track (28s duration from template) */}
+      {/* Infinite Scrolling Track */}
       <div className="animate-marquee flex items-center gap-10">
         {[...marqueeItems, ...marqueeItems].map((item, idx) => {
           const Icon = item.icon;

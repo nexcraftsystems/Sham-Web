@@ -5,7 +5,6 @@ export function useScrollReveal() {
     if (typeof window === 'undefined') return;
 
     if (!('IntersectionObserver' in window)) {
-      // Fallback: reveal all immediately if IntersectionObserver is unsupported
       document.querySelectorAll('.reveal-division').forEach((el) => {
         el.classList.add('is-revealed');
       });
@@ -21,16 +20,40 @@ export function useScrollReveal() {
         });
       },
       {
-        threshold: 0.1,
+        threshold: 0.05,
         rootMargin: '0px 0px -40px 0px',
       }
     );
 
-    const elements = document.querySelectorAll('.reveal-division');
-    elements.forEach((el) => observer.observe(el));
+    const observeAll = () => {
+      const elements = document.querySelectorAll('.reveal-division');
+      elements.forEach((el) => {
+        // If already in top viewport, reveal immediately
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+          el.classList.add('is-revealed');
+        } else {
+          observer.observe(el);
+        }
+      });
+    };
+
+    observeAll();
+
+    // Re-check on scroll for absolute reliability
+    const handleScroll = () => {
+      document.querySelectorAll('.reveal-division:not(.is-revealed)').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.92) {
+          el.classList.add('is-revealed');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
   }, []);

@@ -1,44 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowUpRight, Send, ShieldCheck, Zap, TrendingUp, Gift, Bot, Sparkles } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight, Send, Bot, Zap, Trophy } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import { TELEGRAM_URL } from '../constants/telegram';
+import { TELEGRAM_URL, openTelegramDirect } from '../constants/telegram';
 import { XauusdCandlestickBackground } from './XauusdCandlestickBackground';
 import defaultHeroImage from '../assets/images/hero_prizes_showcase_1790848379769.jpg';
 
 interface HeroProps {
-  onOpenRegister: () => void;
-  onOpenTelegram: () => void;
+  onOpenTelegram?: () => void;
 }
 
-export function Hero({ onOpenRegister, onOpenTelegram }: HeroProps) {
+export function Hero({ onOpenTelegram }: HeroProps) {
   const { language } = useLanguage();
   const t = translations[language].intro;
-  const perk = translations[language].specialOffer;
 
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleSupportClick = () => {
-    if (onOpenTelegram) {
-      onOpenTelegram();
-    } else {
-      window.open(TELEGRAM_URL, '_blank');
-    }
+  const handleDirectTelegram = () => {
+    openTelegramDirect();
   };
 
   return (
@@ -49,289 +26,165 @@ export function Hero({ onOpenRegister, onOpenTelegram }: HeroProps) {
       {/* Moving Candlestick Live Background in Hero Section */}
       <XauusdCandlestickBackground opacity="opacity-35" />
 
-      {/* 12-Column Grid: 8 Cols for Typography & CTA, 4 Cols for Radar HUD */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-16">
-        {/* Left Column (lg:col-span-8) */}
-        <div className="lg:col-span-8 space-y-7">
-          {/* Subtitle tag with border-l-2 border-cyan-500 */}
-          <div className="inline-flex items-center gap-3 border-l-2 border-cyan-500 pl-4 py-1">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-xs uppercase tracking-[0.25em] font-mono text-cyan-400">
-              {t.metaLeft}
-            </span>
-          </div>
+      {/* Hero Typography & CTAs (Full Width, Grand Presence) */}
+      <div className="reveal-division relative z-10 max-w-4xl space-y-7 mb-14">
+        {/* Hero Title: TRADE & CLAIM X SELF REBATE 10USD */}
+        <h1 className="font-syncopate font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter text-white drop-shadow-[0_0_25px_rgba(6,182,212,0.35)] leading-[1.05] sm:leading-[0.98] break-words">
+          TRADE & CLAIM <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-cyan-400 to-emerald-400 drop-shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+            X SELF REBATE 10USD
+          </span>
+        </h1>
 
-          {/* Hero Title with line break and mix-blend-screen */}
-          <h1 className="font-syncopate font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tighter text-white mix-blend-screen drop-shadow-[0_0_25px_rgba(6,182,212,0.35)] leading-[0.95] sm:leading-[0.92] break-words">
-            TRADE & <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-400">
-              CLAIM
-            </span>
-          </h1>
+        {/* Subtitle statement */}
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 font-light leading-relaxed max-w-2xl">
+          {language === 'id'
+            ? 'Setiap closed lot yang Anda tradingkan bulan ini otomatis dihitung ke saldo hadiah Anda. Dapatkan self rebate USD 10/LOT, indikator VIP senilai 10K USD di TradingView, serta hadiah tunai & gadget mewah.'
+            : 'Every closed lot you trade this month is automatically accumulated into your rewards balance. Enjoy USD 10/LOT self rebate, $10,000 USD VIP indicator in TradingView, plus luxury cash and Apple prizes.'}
+        </p>
 
-          {/* Subtitle statement */}
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 font-light leading-relaxed max-w-2xl">
-            {t.description}
-          </p>
+        {/* Necessary Buttons Only: Direct to Telegram without delay */}
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5 pt-2">
+          {/* Main Action -> Direct to Telegram */}
+          <a
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-cyan-400 hover:bg-cyan-300 text-black text-xs sm:text-sm font-mono uppercase tracking-widest font-bold transition-all shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:shadow-[0_0_40px_rgba(6,182,212,0.7)] hover:scale-105 cursor-pointer text-center"
+          >
+            <Send className="w-4 h-4 shrink-0 text-black" />
+            <span>{language === 'id' ? 'Klaim di Telegram Sekarang' : 'Claim on Telegram Now'}</span>
+            <ArrowUpRight className="w-4 h-4 shrink-0 text-black" />
+          </a>
 
-          {/* Action CTAs: Register + Claim 14USD Free Now + Join Channel */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-2">
-            <button
-              type="button"
-              onClick={onOpenRegister}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-cyan-400 hover:bg-cyan-300 text-black text-xs sm:text-sm font-mono uppercase tracking-widest font-bold transition-all shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-[0_0_35px_rgba(6,182,212,0.6)] hover:scale-105 cursor-pointer text-center"
-            >
-              <span>{t.registerAccount}</span>
-              <ArrowUpRight className="w-4 h-4 shrink-0" />
-            </button>
-
-            {/* Special Perk Action: Contact support for claim 14usd free now */}
-            <button
-              type="button"
-              onClick={handleSupportClick}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 rounded-full bg-gradient-to-r from-cyan-950 via-cyan-900 to-cyan-950 hover:border-cyan-400 border border-cyan-500/50 text-cyan-300 text-xs sm:text-sm font-mono uppercase font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105 cursor-pointer text-center"
-            >
-              <Gift className="w-4 h-4 text-cyan-400 animate-pulse shrink-0" />
-              <span>Contact Support for Claim 14USD Free Now</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={onOpenTelegram}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full glass-panel hover:bg-cyan-950/40 border border-white/10 text-slate-300 hover:text-white text-xs sm:text-sm font-mono uppercase tracking-wider transition-all hover:scale-102 cursor-pointer text-center"
-            >
-              <Send className="w-4 h-4 text-cyan-400 shrink-0" />
-              <span>{t.joinChannel}</span>
-            </button>
-          </div>
-
-          {/* 3 High-Impact Perk Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4 border-t border-white/8 max-w-3xl">
-            {/* Card 1: 10 Lot Self Rebate USD 14/LOT */}
-            <div className="reveal-division is-revealed glass-panel p-3.5 sm:p-4 rounded-2xl border border-cyan-500/25 hover:border-cyan-400 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-              <div className="flex items-center gap-2 text-cyan-400 mb-1">
-                <Zap className="w-4 h-4 fill-cyan-400 shrink-0" />
-                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
-                  10 Lot Program
-                </span>
-              </div>
-              <div className="text-base sm:text-lg font-bold font-mono text-white">
-                USD 14 / LOT
-              </div>
-              <span className="text-[11px] text-cyan-300 font-mono block mt-0.5">
-                10 Lot Self Rebate
-              </span>
-            </div>
-
-            {/* Card 2: Free trial seminggu Indicator bernilai 10k usd */}
-            <div className="reveal-division is-revealed glass-panel p-3.5 sm:p-4 rounded-2xl border border-cyan-500/25 hover:border-cyan-400 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-              <div className="flex items-center gap-2 text-cyan-400 mb-1">
-                <Bot className="w-4 h-4 shrink-0" />
-                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
-                  VIP Indicator Suite
-                </span>
-              </div>
-              <div className="text-base sm:text-lg font-bold font-mono text-cyan-300">
-                10K USD Value
-              </div>
-              <span className="text-[11px] text-emerald-400 font-mono block mt-0.5">
-                {language === 'id' ? 'Free Trial Seminggu' : 'Free 1-Week Trial'}
-              </span>
-            </div>
-
-            {/* Card 3: Contact support for claim 14usd free now */}
-            <div
-              onClick={handleSupportClick}
-              className="reveal-division is-revealed glass-panel p-3.5 sm:p-4 rounded-2xl border border-cyan-500/40 hover:border-cyan-300 hover:bg-cyan-950/40 transition-all cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.15)] group"
-            >
-              <div className="flex items-center justify-between text-cyan-400 mb-1">
-                <div className="flex items-center gap-1.5">
-                  <Sparkles className="w-4 h-4 shrink-0 animate-pulse" />
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400">
-                    Instant Bonus
-                  </span>
-                </div>
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
-              </div>
-              <div className="text-base sm:text-lg font-bold font-mono text-white">
-                Claim 14USD Free
-              </div>
-              <span className="text-[11px] text-slate-400 font-mono block mt-0.5">
-                Contact Support Now →
-              </span>
-            </div>
-          </div>
+          {/* Secondary Action -> Direct Channel Link */}
+          <a
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full glass-panel hover:bg-cyan-950/40 border border-white/10 text-slate-300 hover:text-white text-xs sm:text-sm font-mono uppercase tracking-wider transition-all hover:scale-102 cursor-pointer text-center"
+          >
+            <Send className="w-4 h-4 text-cyan-400 shrink-0" />
+            <span>{t.joinChannel}</span>
+          </a>
         </div>
 
-        {/* Right Column (lg:col-span-4): Animated Radar HUD Division
-            - Hidden on mobile device (hidden md:flex)
-            - Animated on scrolling with floating parallax and slight dynamic tilt */}
-        <div className="hidden md:flex lg:col-span-4 justify-center">
+        {/* 3 High-Impact Perk Cards (All direct to Telegram) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-4 border-t border-white/8 max-w-3xl">
+          {/* Card 1: Self Rebate 10USD */}
           <div
-            style={{
-              transform: `translate3d(0, ${Math.min(scrollY * 0.12, 55)}px, 0) rotate(${Math.sin(scrollY * 0.0035) * 2.2}deg)`,
-              transition: 'transform 0.1s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-            className="hidden md:flex relative w-full max-w-[280px] sm:max-w-[340px] aspect-square rounded-2xl glass-panel p-3.5 sm:p-6 border border-cyan-500/30 shadow-[0_0_30px_rgba(6,182,212,0.18)] items-center justify-center overflow-hidden transition-shadow hover:shadow-[0_0_40px_rgba(6,182,212,0.35)]"
+            onClick={handleDirectTelegram}
+            className="reveal-division glass-panel p-4 rounded-2xl border border-cyan-500/25 hover:border-cyan-400 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.1)] group"
           >
-            {/* Background circular rings at scale-75 and scale-50 */}
-            <div className="absolute inset-0 m-auto w-full h-full rounded-full border border-cyan-500/20" />
-            <div className="absolute inset-0 m-auto w-3/4 h-3/4 rounded-full border border-cyan-500/25 scale-75" />
-            <div className="absolute inset-0 m-auto w-1/2 h-1/2 rounded-full border border-cyan-500/30 scale-50" />
-            
-            {/* Center crosshair lines */}
-            <div className="absolute inset-x-0 top-1/2 h-[1px] bg-cyan-500/20" />
-            <div className="absolute inset-y-0 left-1/2 w-[1px] bg-cyan-500/20" />
-
-            {/* Rotating radar sweep line */}
-            <div className="absolute inset-0 m-auto w-full h-full rounded-full animate-radar-sweep pointer-events-none">
-              <div className="w-1/2 h-1/2 bg-gradient-to-br from-cyan-500/25 to-transparent origin-bottom-right" />
+            <div className="flex items-center justify-between text-cyan-400 mb-1.5">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 fill-cyan-400 shrink-0" />
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                  Self Rebate Program
+                </span>
+              </div>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-
-            {/* Vector Animated Polygon Radar Path with 5 EXACT corners: REBATE, INDICATOR, REWARDS, CLAIM, SUPPORT */}
-            <svg
-              viewBox="0 0 140 130"
-              className="w-full h-full relative z-10 filter drop-shadow-[0_0_10px_rgba(6,182,212,0.85)] overflow-visible"
-            >
-              {/* Radar animated polygon path with 5 corners */}
-              <polygon
-                points="70,26 104,50 91,88 49,88 36,50"
-                fill="rgba(6, 182, 212, 0.16)"
-                stroke="#06b6d4"
-                strokeWidth="1.8"
-                className="animate-radar-path"
-              />
-
-              {/* Node glow dots at the 5 vertices */}
-              <circle cx="70" cy="26" r="3" fill="#ffffff" className="drop-shadow-[0_0_6px_#fff]" />
-              <circle cx="104" cy="50" r="3" fill="#06b6d4" className="drop-shadow-[0_0_6px_#06b6d4]" />
-              <circle cx="91" cy="88" r="3" fill="#06b6d4" className="drop-shadow-[0_0_6px_#06b6d4]" />
-              <circle cx="49" cy="88" r="3" fill="#06b6d4" className="drop-shadow-[0_0_6px_#06b6d4]" />
-              <circle cx="36" cy="50" r="3" fill="#ffffff" className="drop-shadow-[0_0_6px_#fff]" />
-
-              {/* 1. REBATE (Top Corner) */}
-              <text
-                x="70"
-                y="15"
-                textAnchor="middle"
-                fill="#67e8f9"
-                fontSize="6.5"
-                fontFamily="monospace"
-                fontWeight="bold"
-                letterSpacing="0.06em"
-              >
-                REBATE
-              </text>
-
-              {/* 2. INDICATOR (Top-Right Corner) */}
-              <text
-                x="110"
-                y="52"
-                textAnchor="start"
-                fill="#67e8f9"
-                fontSize="6"
-                fontFamily="monospace"
-                fontWeight="bold"
-                letterSpacing="0.06em"
-              >
-                INDICATOR
-              </text>
-
-              {/* 3. REWARDS (Bottom-Right Corner) */}
-              <text
-                x="95"
-                y="101"
-                textAnchor="middle"
-                fill="#67e8f9"
-                fontSize="6"
-                fontFamily="monospace"
-                fontWeight="bold"
-                letterSpacing="0.06em"
-              >
-                REWARDS
-              </text>
-
-              {/* 4. CLAIM (Bottom-Left Corner) */}
-              <text
-                x="45"
-                y="101"
-                textAnchor="middle"
-                fill="#67e8f9"
-                fontSize="6"
-                fontFamily="monospace"
-                fontWeight="bold"
-                letterSpacing="0.06em"
-              >
-                CLAIM
-              </text>
-
-              {/* 5. SUPPORT (Top-Left Corner) */}
-              <text
-                x="30"
-                y="52"
-                textAnchor="end"
-                fill="#67e8f9"
-                fontSize="6"
-                fontFamily="monospace"
-                fontWeight="bold"
-                letterSpacing="0.06em"
-              >
-                SUPPORT
-              </text>
-            </svg>
-
-            {/* Live Center Telemetry Readout */}
-            <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[9px] font-mono text-slate-400 border-t border-white/10 pt-2 z-20">
-              <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                HUD LIVE · 5 CORNERS
-              </span>
-              <span>USD 14/LOT · 10K USD</span>
+            <div className="text-base sm:text-lg font-bold font-mono text-white">
+              USD 10 / LOT
             </div>
+            <span className="text-[11px] text-cyan-300 font-mono block mt-0.5">
+              Self Rebate 10USD →
+            </span>
+          </div>
+
+          {/* Card 2: VIP Indicator Suite Worth 10K USD in TradingView */}
+          <div
+            onClick={handleDirectTelegram}
+            className="reveal-division glass-panel p-4 rounded-2xl border border-cyan-500/25 hover:border-cyan-400 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.1)] group"
+          >
+            <div className="flex items-center justify-between text-cyan-400 mb-1.5">
+              <div className="flex items-center gap-2">
+                <Bot className="w-4 h-4 shrink-0" />
+                <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400">
+                  TradingView Ready
+                </span>
+              </div>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <div className="text-base sm:text-lg font-bold font-mono text-cyan-300">
+              WORTH 10K USD
+            </div>
+            <span className="text-[11px] text-emerald-400 font-mono block mt-0.5">
+              {language === 'id' ? 'Free Trial di TradingView →' : 'Free Trial in TradingView →'}
+            </span>
+          </div>
+
+          {/* Card 3: Luxury Prize Milestones */}
+          <div
+            onClick={handleDirectTelegram}
+            className="reveal-division glass-panel p-4 rounded-2xl border border-cyan-500/40 hover:border-cyan-300 hover:bg-cyan-950/40 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.15)] group"
+          >
+            <div className="flex items-center justify-between text-cyan-400 mb-1.5">
+              <div className="flex items-center gap-1.5">
+                <Trophy className="w-4 h-4 shrink-0 animate-pulse text-amber-400" />
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                  Target Milestones
+                </span>
+              </div>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+            </div>
+            <div className="text-base sm:text-lg font-bold font-mono text-white">
+              100 — 1,000 LOT
+            </div>
+            <span className="text-[11px] text-slate-400 font-mono block mt-0.5">
+              Cash & Apple Prizes →
+            </span>
           </div>
         </div>
       </div>
 
-      {/* FULL HERO PRIZE SHOWCASE (Optimized for Mobile Phone Preview to see ALL prizes) */}
-      <div className="reveal-division relative z-10 rounded-3xl overflow-hidden glass-panel border border-cyan-500/20 shadow-[0_0_30px_rgba(6,182,212,0.12)]">
+      {/* FULL HERO PRIZE SHOWCASE - FULL COLOR, VIBRANT, MODERN */}
+      <div className="reveal-division relative z-10 rounded-3xl overflow-hidden glass-panel border border-cyan-500/30 shadow-[0_0_35px_rgba(6,182,212,0.18)]">
         {/* Top HUD Frame Bar */}
-        <div className="px-5 py-3 bg-black/60 border-b border-white/8 flex items-center justify-between flex-wrap gap-2">
+        <div className="px-5 py-3.5 bg-black/75 border-b border-white/10 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-[11px] font-mono uppercase tracking-widest text-slate-300 font-semibold">
-              Live Prize Catalog · Monthly Cycle
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-[11px] font-mono uppercase tracking-widest text-slate-200 font-bold">
+              OFFICIAL PRIZE SHOWCASE · ALL 5 TIERS INCLUDED
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono uppercase text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-2 py-0.5 rounded">
-              USD 14/LOT Self Rebate
+            <span className="text-[10px] font-mono uppercase text-cyan-300 bg-cyan-950/80 border border-cyan-500/40 px-2.5 py-1 rounded-full font-bold shadow-sm">
+              SELF REBATE 10USD
             </span>
-            <span className="text-[10px] font-mono uppercase text-cyan-400 bg-cyan-950/70 border border-cyan-500/30 px-2 py-0.5 rounded">
-              All 5 Tiers Included
+            <span className="text-[10px] font-mono uppercase text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-1 rounded-full font-bold shadow-sm">
+              WORTH 10K USD INDICATOR
             </span>
           </div>
         </div>
 
-        {/* Picture Container */}
-        <div className="relative w-full aspect-[16/10] sm:aspect-[21/9] bg-gradient-to-b from-black/80 via-black/40 to-black/90 flex items-center justify-center p-2 sm:p-4">
+        {/* Picture Container - Full Vibrant Color (NO grayscale) */}
+        <a
+          href={TELEGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative block w-full aspect-[16/10] sm:aspect-[21/9] bg-gradient-to-b from-black/60 via-transparent to-black/80 p-2 sm:p-4 group cursor-pointer overflow-hidden"
+        >
           <img
             src={defaultHeroImage}
-            alt="Trade & Claim All Prize Showcase"
-            className="w-full h-full object-contain sm:object-cover object-center rounded-xl"
+            alt="Trade & Claim All Prize Showcase Full Color"
+            className="w-full h-full object-contain sm:object-cover object-center rounded-xl saturate-120 contrast-105 brightness-105 group-hover:scale-102 transition-transform duration-700 ease-out"
             referrerPolicy="no-referrer"
           />
 
-          {/* Vignette Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent pointer-events-none" />
+          {/* Soft Bottom Gradient Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/90 via-transparent to-transparent pointer-events-none" />
 
           {/* Floating Live Badge on Image */}
           <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto flex flex-wrap items-center gap-2 pointer-events-none">
-            <span className="px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-cyan-500/30 text-white text-[11px] font-mono flex items-center gap-2 shadow-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Cash 2.2Jt · iPad 11 · iPhone 17 · MacBook Neo + 17Jt · USD 14/LOT
+            <span className="px-4 py-2 rounded-full bg-black/85 backdrop-blur-md border border-cyan-500/50 text-white text-[11px] font-mono flex items-center gap-2.5 shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:border-cyan-400 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="font-semibold">Cash 2.2Jt · iPad 11 · iPhone 17 · MacBook Neo + 17Jt · SELF REBATE 10USD</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-cyan-400" />
             </span>
           </div>
-        </div>
+        </a>
       </div>
     </section>
   );

@@ -2,12 +2,12 @@ import React, { useRef } from 'react';
 import { Send, ArrowUpRight, TrendingUp, Target, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import { TELEGRAM_URL } from '../constants/telegram';
+import { TELEGRAM_URL, openTelegramDirect } from '../constants/telegram';
 import { XauusdCandlestickBackground } from './XauusdCandlestickBackground';
 
 interface HowToClaimProps {
-  onOpenTelegram: () => void;
-  onOpenRegister: () => void;
+  onOpenTelegram?: () => void;
+  onOpenRegister?: () => void;
 }
 
 interface TiltCardProps {
@@ -59,11 +59,7 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
   const t = translations[language].howToClaim;
 
   const handleTelegramClick = () => {
-    if (onOpenTelegram) {
-      onOpenTelegram();
-    } else {
-      window.open(TELEGRAM_URL, '_blank');
-    }
+    openTelegramDirect();
   };
 
   const stepIcons = [TrendingUp, Target, MessageSquare];
@@ -71,7 +67,7 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
   return (
     <section
       id="process"
-      className="relative w-full bg-black/40 py-24 md:py-32 border-b border-white/8 select-none overflow-hidden z-10"
+      className="relative w-full bg-black/40 py-14 md:py-20 border-b border-white/8 select-none overflow-hidden z-10"
     >
       {/* Moving Candlestick Live Background in How to Claim Rewards Section */}
       <XauusdCandlestickBackground opacity="opacity-25" />
@@ -94,14 +90,16 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
               01 // PROCESS
             </span>
             <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={handleTelegramClick}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-950/70 hover:bg-cyan-900/70 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] cursor-pointer"
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-950/70 hover:bg-cyan-900/70 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>{t.contactAdmin}</span>
-              </button>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+              </a>
             </div>
           </div>
         </div>
@@ -150,7 +148,7 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
                         onClick={handleTelegramClick}
                         className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-semibold cursor-pointer"
                       >
-                        <span>{t.adminUser}</span>
+                        <span>{language === 'id' ? 'Klaim di Telegram' : 'Claim on Telegram'}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
                     ) : (
