@@ -17,6 +17,10 @@ export function TechMarquee() {
   const marqueeItems = [
     {
       icon: Zap,
+      text: 'LIQUIDITYX · INSIGHT, ANALYZE, GROW',
+    },
+    {
+      icon: Coins,
       text: 'TRADE & CLAIM X SELF REBATE 10USD',
     },
     {
@@ -68,7 +72,7 @@ export function TechMarquee() {
 
   return (
     <div className="reveal-division w-full border-y border-white/8 bg-black/40 backdrop-blur-md py-3.5 overflow-hidden relative select-none">
-      {/* Subtle Cyan Gradient Edges */}
+      {/* Subtle Dark Gradient Edges */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#030303] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#030303] to-transparent z-10 pointer-events-none" />
 
@@ -79,10 +83,10 @@ export function TechMarquee() {
           return (
             <div
               key={idx}
-              className="flex items-center gap-3 text-xs sm:text-sm font-mono tracking-widest uppercase text-slate-300 hover:text-cyan-400 transition-colors whitespace-nowrap"
+              className="flex items-center gap-3 text-xs sm:text-sm font-mono tracking-widest uppercase text-slate-300 hover:text-amber-300 transition-colors whitespace-nowrap"
             >
-              <Icon className="w-4 h-4 text-cyan-400 shrink-0" />
-              <span className={idx % 4 === 0 || idx % 4 === 2 ? 'text-cyan-300 font-bold' : ''}>
+              <Icon className="w-4 h-4 text-amber-400 shrink-0" />
+              <span className={idx % 4 === 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 font-bold' : idx % 4 === 2 ? 'text-slate-100 font-semibold' : ''}>
                 {item.text}
               </span>
               <span className="text-white/20 ml-6">/</span>

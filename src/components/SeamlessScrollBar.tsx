@@ -102,7 +102,7 @@ export function SeamlessScrollBar() {
         <div
           className={`h-full rounded-full transition-all duration-300 ${
             isHovered || isDragging
-              ? 'w-1 bg-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.3)]'
+              ? 'w-1 bg-amber-500/30 shadow-[0_0_10px_rgba(245,158,11,0.3)]'
               : 'w-[2px] bg-white/10'
           }`}
         />
@@ -114,7 +114,7 @@ export function SeamlessScrollBar() {
               key={idx}
               className={`w-1 h-1 rounded-full transition-all duration-300 ${
                 activeId === sec.id
-                  ? 'bg-cyan-400 scale-150 shadow-[0_0_8px_rgba(6,182,212,0.8)]'
+                  ? 'bg-amber-400 scale-150 shadow-[0_0_8px_rgba(245,158,11,0.8)]'
                   : 'bg-white/20 group-hover:bg-white/40'
               }`}
             />
@@ -136,14 +136,14 @@ export function SeamlessScrollBar() {
           <div
             className={`rounded-full transition-all duration-200 ${
               isHovered || isDragging
-                ? 'w-2 h-7 bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.8)] scale-110'
-                : 'w-1.5 h-5 bg-cyan-500/70 hover:bg-cyan-400'
+                ? 'w-2 h-7 bg-gradient-to-b from-amber-300 via-amber-400 to-yellow-500 shadow-[0_0_15px_rgba(245,158,11,0.8)] scale-110'
+                : 'w-1.5 h-5 bg-amber-500/80 hover:bg-amber-400'
             }`}
           />
 
           {/* Floating Info Tag revealing current section and % */}
           <div
-            className={`absolute right-5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/90 text-white border border-cyan-500/30 backdrop-blur-md text-[10px] font-mono whitespace-nowrap shadow-xl transition-all duration-300 pointer-events-none ${
+            className={`absolute right-5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/90 text-white border border-amber-500/40 backdrop-blur-md text-[10px] font-mono whitespace-nowrap shadow-xl transition-all duration-300 pointer-events-none ${
               isHovered || isDragging
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-2'
@@ -151,7 +151,7 @@ export function SeamlessScrollBar() {
           >
             <span className="font-semibold text-white">{currentSection.label}</span>
             <span className="text-white/40">·</span>
-            <span className="text-cyan-400 font-bold">{percent}%</span>
+            <span className="text-amber-400 font-bold">{percent}%</span>
           </div>
         </div>
       </div>

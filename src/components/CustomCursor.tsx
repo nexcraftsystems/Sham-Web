@@ -64,10 +64,10 @@ export function CustomCursor({ cursorText }: CustomCursorProps) {
       style={{
         width: isExpanded ? '64px' : '8px',
         height: isExpanded ? '64px' : '8px',
-        backgroundColor: isExpanded ? 'rgba(6, 182, 212, 0.85)' : '#06b6d4',
+        backgroundColor: isExpanded ? 'rgba(245, 158, 11, 0.9)' : '#f59e0b',
         boxShadow: isExpanded
-          ? '0 0 30px rgba(6, 182, 212, 0.8)'
-          : '0 0 15px rgba(6, 182, 212, 0.9)',
+          ? '0 0 30px rgba(245, 158, 11, 0.85)'
+          : '0 0 15px rgba(245, 158, 11, 0.95)',
         willChange: 'transform',
       }}
     >

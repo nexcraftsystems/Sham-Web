@@ -39,25 +39,25 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md max-h-[92vh] flex flex-col bg-[#080808] text-slate-200 rounded-2xl sm:rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden border border-cyan-500/30">
+      <div className="relative w-full max-w-md max-h-[92vh] flex flex-col bg-[#080808] text-slate-200 rounded-2xl sm:rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden border border-amber-500/30">
         {/* Header */}
         <div className="shrink-0 px-5 sm:px-6 py-4 sm:py-5 border-b border-white/8 flex justify-between items-center bg-black/60">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyan-950/70 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+            <div className="w-8 h-8 rounded-lg bg-amber-950/70 border border-amber-500/30 flex items-center justify-center text-amber-400">
               <Send className="w-4 h-4" />
             </div>
             <div>
               <h3 className="font-syncopate text-xs sm:text-sm md:text-base font-bold text-white tracking-tight">
                 {t.title}
               </h3>
-              <p className="text-[10px] text-cyan-400 font-mono">{t.subtitle}</p>
+              <p className="text-[10px] text-amber-400 font-mono">{t.subtitle}</p>
             </div>
           </div>
 
           <button
             type="button"
             onClick={onClose}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-white/10 text-xs font-mono text-slate-400 hover:text-white hover:border-cyan-500/40 transition-colors cursor-pointer"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-white/10 text-xs font-mono text-slate-400 hover:text-white hover:border-amber-500/40 transition-colors cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -66,9 +66,9 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
         {/* Content with scrollable area */}
         <div className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1">
           {/* Card 1: Official Channel */}
-          <div className="p-4 rounded-xl bg-black/50 border border-white/8 hover:border-cyan-500/30 transition-colors flex flex-col justify-between space-y-3">
+          <div className="p-4 rounded-xl bg-black/50 border border-white/8 hover:border-amber-500/30 transition-colors flex flex-col justify-between space-y-3">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-1">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold block mb-1">
                 {t.officialChannel}
               </span>
               <div className="text-sm sm:text-base font-mono font-bold text-white">
@@ -84,7 +84,7 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase font-semibold transition-all shadow-[0_0_12px_rgba(6,182,212,0.15)]"
+                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-amber-950/80 hover:bg-amber-900 border border-amber-500/30 text-amber-300 text-xs font-mono uppercase font-semibold transition-all shadow-[0_0_12px_rgba(245,158,11,0.15)]"
               >
                 <span>{t.openChannel}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -92,7 +92,7 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
               <button
                 type="button"
                 onClick={() => handleCopy(t.channelHandle, 'channel')}
-                className="px-3 py-2 rounded-lg border border-white/15 hover:border-cyan-500/40 text-xs font-mono text-slate-300 hover:text-white transition-colors cursor-pointer"
+                className="px-3 py-2 rounded-lg border border-white/15 hover:border-amber-500/40 text-xs font-mono text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 {copied === 'channel' ? t.copied : t.copy}
               </button>
@@ -100,9 +100,9 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
           </div>
 
           {/* Card 2: Admin Claim Support */}
-          <div className="p-4 rounded-xl bg-black/50 border border-white/8 hover:border-cyan-500/30 transition-colors flex flex-col justify-between space-y-3">
+          <div className="p-4 rounded-xl bg-black/50 border border-white/8 hover:border-amber-500/30 transition-colors flex flex-col justify-between space-y-3">
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold block mb-1">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold block mb-1">
                 {t.adminSupport}
               </span>
               <div className="text-sm sm:text-base font-mono font-bold text-white">
@@ -118,7 +118,7 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-cyan-400 hover:bg-cyan-300 text-black text-xs font-mono uppercase font-bold transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 text-black text-xs font-mono uppercase font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.35)]"
               >
                 <span>{t.messageAdmin}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
               <button
                 type="button"
                 onClick={() => handleCopy(t.adminHandle, 'admin')}
-                className="px-3 py-2 rounded-lg border border-white/15 hover:border-cyan-500/40 text-xs font-mono text-slate-300 hover:text-white transition-colors cursor-pointer"
+                className="px-3 py-2 rounded-lg border border-white/15 hover:border-amber-500/40 text-xs font-mono text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 {copied === 'admin' ? t.copied : t.copy}
               </button>
@@ -140,7 +140,7 @@ export function TelegramModal({ isOpen, onClose }: TelegramModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="text-cyan-400 font-bold hover:underline cursor-pointer"
+            className="text-amber-400 font-bold hover:underline cursor-pointer"
           >
             {t.close}
           </button>

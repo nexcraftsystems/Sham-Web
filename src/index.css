@@ -7,11 +7,11 @@
     background-color: #030303;
     color: #cbd5e1;
     scrollbar-width: thin;
-    scrollbar-color: #1e293b #000;
+    scrollbar-color: #27272a #000;
   }
 
   ::selection {
-    background-color: rgb(6, 182, 212);
+    background-color: #f59e0b;
     color: #000;
   }
 
@@ -26,26 +26,30 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #27272a;
     border-radius: 9999px;
     transition: background-color 0.2s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #06b6d4;
+    background: #f59e0b;
   }
 }
 
-/* Syncopate typography helper */
+/* Syncopate & Cinzel typography helper */
 .font-syncopate {
   font-family: 'Syncopate', sans-serif;
 }
 
-/* Void background with radial glow and 4rem grid */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+/* Void background with warm gold radial glow and 4rem grid */
 .bg-void {
   background-color: #030303;
   background-image: 
-    radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 100% 100%, 4rem 4rem, 4rem 4rem;
@@ -63,30 +67,37 @@
   background-size: 100% 4px;
 }
 
-/* Subtle Cyber Matrix Boxes Background Layer */
+/* Luxury Gold & Silver Matrix Boxes Background Layer */
 .matrix-boxes-layer {
   background-image:
     /* Matrix Box Grid Lines */
-    linear-gradient(to right, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(6, 182, 212, 0.04) 1px, transparent 1px),
-    /* Matrix Subtle Intersection Dots / Nodes */
-    radial-gradient(circle at 1px 1px, rgba(6, 182, 212, 0.14) 1px, transparent 1.5px);
+    linear-gradient(to right, rgba(245, 158, 11, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.035) 1px, transparent 1px),
+    /* Matrix Subtle Gold Intersection Dots */
+    radial-gradient(circle at 1px 1px, rgba(245, 158, 11, 0.16) 1px, transparent 1.5px);
   background-size: 44px 44px, 44px 44px, 44px 44px;
 }
 
 /* Cyber-Luxury Glass Panel */
 .glass-panel {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.glass-panel-cyan {
-  background: rgba(3, 10, 16, 0.75);
+.glass-panel-gold {
+  background: rgba(18, 14, 5, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.glass-panel-silver {
+  background: rgba(14, 16, 22, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.18);
 }
 
 /* 3D Perspective container */
@@ -98,15 +109,15 @@
   transform-style: preserve-3d;
 }
 
-/* Animated Star Field */
+/* Animated Star Field (Gold & Silver Starlight) */
 .stars-layer {
   background-image: 
     radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 40px 70px, rgba(6,182,212,0.8), rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 50px 160px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 90px 40px, rgba(6,182,212,0.9), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 40px 70px, rgba(245,158,11,0.85), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 50px 160px, #e2e8f0, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 90px 40px, rgba(254,240,138,0.9), rgba(0,0,0,0)),
     radial-gradient(1px 1px at 130px 80px, #ffffff, rgba(0,0,0,0)),
-    radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0));
+    radial-gradient(1.5px 1.5px at 160px 120px, #fde68a, rgba(0,0,0,0));
   background-repeat: repeat;
   background-size: 200px 200px;
   animation: stars-drift 60s linear infinite;
@@ -183,20 +194,20 @@
   animation: float 4s ease-in-out infinite;
 }
 
-/* Pulse Cyan Glow */
-@keyframes pulse-cyan {
+/* Pulse Gold Glow */
+@keyframes pulse-gold {
   0%, 100% {
     opacity: 0.3;
     transform: scale(1);
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.7;
     transform: scale(1.05);
   }
 }
 
-.animate-pulse-cyan {
-  animation: pulse-cyan 3s ease-in-out infinite;
+.animate-pulse-gold {
+  animation: pulse-gold 3s ease-in-out infinite;
 }
 
 /* Reveal characters */
@@ -214,27 +225,16 @@
   }
 }
 
-/* Professional Scroll Reveal / Fluid Motion on all divisions */
+/* Scroll Reveal / Fade-in Motion on divisions */
 .reveal-division {
   opacity: 0;
-  transform: translateY(32px) scale(0.985);
-  filter: blur(4px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform, filter;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .reveal-division.is-revealed {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: translateY(0);
 }
-
-/* Stagger delay helpers for cards inside grids */
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-.reveal-delay-4 { transition-delay: 320ms; }
-.reveal-delay-5 { transition-delay: 400ms; }
 

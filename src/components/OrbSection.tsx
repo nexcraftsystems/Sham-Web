@@ -25,9 +25,9 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
       subtitle: language === 'id' ? 'Transfer Tunai Langsung ke Rekening' : 'Direct Cash Transfer to Bank',
       badge: 'Starter Milestone',
       image: prizeCash,
-      glowColor: 'from-emerald-500/20 via-transparent to-transparent',
-      borderColor: 'border-emerald-500/30 hover:border-emerald-400',
-      badgeColor: 'bg-emerald-950/80 border-emerald-500/40 text-emerald-300',
+      glowColor: 'from-amber-500/20 via-transparent to-transparent',
+      borderColor: 'border-amber-500/30 hover:border-amber-400',
+      badgeColor: 'bg-amber-950/80 border-amber-500/40 text-amber-300',
       tag: '100% Guaranteed Payout',
     },
     {
@@ -36,9 +36,9 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
       subtitle: language === 'id' ? 'Tablet Next-Gen untuk Analisa & Trading' : 'Next-Gen Tablet for Trading On-The-Go',
       badge: 'Trader Tech',
       image: prizeIpad,
-      glowColor: 'from-cyan-500/20 via-transparent to-transparent',
-      borderColor: 'border-cyan-500/30 hover:border-cyan-400',
-      badgeColor: 'bg-cyan-950/80 border-cyan-500/40 text-cyan-300',
+      glowColor: 'from-slate-300/20 via-transparent to-transparent',
+      borderColor: 'border-slate-300/30 hover:border-slate-200',
+      badgeColor: 'bg-slate-900/80 border-slate-400/40 text-slate-200',
       tag: 'Official Apple Device',
     },
     {
@@ -47,9 +47,9 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
       subtitle: language === 'id' ? 'Smartphone Flagship Titanium Terbaru' : 'Latest Titanium Flagship Smartphone',
       badge: 'Flagship Device',
       image: prizeIphone,
-      glowColor: 'from-blue-500/20 via-transparent to-transparent',
-      borderColor: 'border-blue-500/30 hover:border-blue-400',
-      badgeColor: 'bg-blue-950/80 border-blue-500/40 text-blue-300',
+      glowColor: 'from-amber-400/20 via-slate-300/10 to-transparent',
+      borderColor: 'border-amber-500/30 hover:border-amber-400',
+      badgeColor: 'bg-amber-950/80 border-amber-500/40 text-amber-300',
       tag: 'Brand New Sealed in Box',
     },
     {
@@ -58,9 +58,9 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
       subtitle: language === 'id' ? 'Laptop Performa Tinggi + Bonus Tunai' : 'High Performance Laptop + Cash Bonus',
       badge: 'Pro Tier Package',
       image: prizeMacbookCash,
-      glowColor: 'from-purple-500/20 via-transparent to-transparent',
-      borderColor: 'border-purple-500/30 hover:border-purple-400',
-      badgeColor: 'bg-purple-950/80 border-purple-500/40 text-purple-300',
+      glowColor: 'from-slate-200/20 via-amber-400/15 to-transparent',
+      borderColor: 'border-slate-300/40 hover:border-slate-100',
+      badgeColor: 'bg-slate-900/90 border-slate-300/50 text-slate-100',
       tag: 'MacBook + Cash Combo',
     },
     {
@@ -69,9 +69,9 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
       subtitle: language === 'id' ? 'Hadiah Utama: Laptop Pro + Tunai 17 Juta Rupiah' : 'Grand Prize: Pro Laptop + 17M IDR Cash',
       badge: '⭐ GRAND CHAMPION PRIZE',
       image: prizeMacbookBigCash,
-      glowColor: 'from-amber-500/25 via-cyan-500/10 to-transparent',
-      borderColor: 'border-amber-500/50 hover:border-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.2)]',
-      badgeColor: 'bg-amber-950/90 border-amber-500/60 text-amber-300 font-bold',
+      glowColor: 'from-amber-500/35 via-yellow-400/20 to-transparent',
+      borderColor: 'border-amber-500/60 hover:border-yellow-400 shadow-[0_0_35px_rgba(245,158,11,0.3)]',
+      badgeColor: 'bg-amber-950/90 border-amber-400/70 text-amber-300 font-bold',
       tag: 'Ultimate Trader Milestone',
     },
   ];
@@ -84,8 +84,8 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
       {/* Section Header with "02 // REWARDS" */}
       <div className="reveal-division flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 pb-6 border-b border-white/8">
         <div>
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-mono text-cyan-400 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-mono text-amber-400 mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
             <span>02 // REWARDS</span>
           </div>
           <h2 className="font-syncopate text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white uppercase">
@@ -106,7 +106,7 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-950/70 hover:bg-cyan-900/70 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-950/70 hover:bg-amber-900/70 border border-amber-500/30 text-amber-300 text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(245,158,11,0.15)] hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] cursor-pointer"
           >
             <Send className="w-3.5 h-3.5" />
             <span>{t.contactAdminClaim}</span>
@@ -122,7 +122,7 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
           {prizeTiers.slice(0, 3).map((tier, idx) => (
             <div
               key={idx}
-              className={`reveal-division group relative rounded-2xl glass-panel ${tier.borderColor} transition-all duration-500 overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.7)] hover:shadow-[0_0_35px_rgba(6,182,212,0.25)] flex flex-col justify-between`}
+              className={`reveal-division group relative rounded-2xl glass-panel ${tier.borderColor} transition-all duration-500 overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.7)] hover:shadow-[0_0_35px_rgba(245,158,11,0.2)] flex flex-col justify-between`}
             >
               {/* Radial ambient glow behind card */}
               <div className={`absolute -top-24 -left-24 w-60 h-60 bg-gradient-to-br ${tier.glowColor} blur-3xl pointer-events-none`} />
@@ -141,7 +141,7 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
 
                 {/* Overlaid Lot Target Badge */}
                 <div className="absolute top-3.5 left-3.5 z-10">
-                  <span className="px-3.5 py-1 rounded-full bg-black/85 backdrop-blur-md text-cyan-300 border border-cyan-500/40 text-xs font-mono uppercase tracking-wider font-bold shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+                  <span className="px-3.5 py-1 rounded-full bg-black/85 backdrop-blur-md text-amber-300 border border-amber-500/40 text-xs font-mono uppercase tracking-wider font-bold shadow-[0_0_12px_rgba(245,158,11,0.3)]">
                     {tier.lot}
                   </span>
                 </div>
@@ -157,15 +157,15 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
               {/* Card Body */}
               <div className="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between relative z-10">
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-cyan-400">
-                    <span className="flex items-center gap-1.5 text-emerald-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="flex items-center justify-between text-[11px] font-mono text-amber-400">
+                    <span className="flex items-center gap-1.5 text-amber-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                       <span>{tier.tag}</span>
                     </span>
                     <span className="text-slate-500">Tier #{idx + 1}</span>
                   </div>
 
-                  <h3 className="font-syncopate text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                  <h3 className="font-syncopate text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-amber-300 transition-colors leading-snug">
                     {tier.title}
                   </h3>
 
@@ -180,13 +180,13 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
                     href={TELEGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 px-4 rounded-xl bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/40 hover:border-cyan-300 text-cyan-300 hover:text-white text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] cursor-pointer"
+                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:brightness-110 text-black font-bold text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)] hover:shadow-[0_0_20px_rgba(245,158,11,0.45)] cursor-pointer"
                   >
-                    <Send className="w-3.5 h-3.5 text-cyan-400" />
+                    <Send className="w-3.5 h-3.5 text-black" />
                     <span>
                       {language === 'id' ? `KLAIM ${tier.lot} SEKARANG` : `CLAIM ${tier.lot} NOW`}
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-80 text-black" />
                   </a>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
           {prizeTiers.slice(3, 5).map((tier, idx) => (
             <div
               key={idx + 3}
-              className={`reveal-division group relative rounded-2xl glass-panel ${tier.borderColor} transition-all duration-500 overflow-hidden shadow-[0_0_35px_rgba(0,0,0,0.8)] hover:shadow-[0_0_45px_rgba(6,182,212,0.3)] flex flex-col sm:flex-row`}
+              className={`reveal-division group relative rounded-2xl glass-panel ${tier.borderColor} transition-all duration-500 overflow-hidden shadow-[0_0_35px_rgba(0,0,0,0.8)] hover:shadow-[0_0_45px_rgba(245,158,11,0.3)] flex flex-col sm:flex-row`}
             >
               {/* Radial ambient glow behind card */}
               <div className={`absolute -top-24 -left-24 w-80 h-80 bg-gradient-to-br ${tier.glowColor} blur-3xl pointer-events-none`} />
@@ -217,7 +217,7 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
 
                 {/* Overlaid Lot Target Badge */}
                 <div className="absolute top-3.5 left-3.5 z-10">
-                  <span className="px-3.5 py-1 rounded-full bg-black/85 backdrop-blur-md text-cyan-300 border border-cyan-500/40 text-xs font-mono uppercase tracking-wider font-bold shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                  <span className="px-3.5 py-1 rounded-full bg-black/85 backdrop-blur-md text-amber-300 border border-amber-500/40 text-xs font-mono uppercase tracking-wider font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]">
                     {tier.lot}
                   </span>
                 </div>
@@ -230,13 +230,13 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
                     <span className={`px-2.5 py-0.5 rounded-full ${tier.badgeColor} backdrop-blur-md text-[10px] font-mono border uppercase tracking-wider`}>
                       {tier.badge}
                     </span>
-                    <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                    <span className="text-[11px] font-mono text-amber-400 flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
                       <span>{tier.tag}</span>
                     </span>
                   </div>
 
-                  <h3 className="font-syncopate text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                  <h3 className="font-syncopate text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-amber-300 transition-colors leading-snug">
                     {tier.title}
                   </h3>
 
@@ -251,13 +251,13 @@ export function OrbSection({ onOpenTelegram }: OrbSectionProps) {
                     href={TELEGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-cyan-950 via-cyan-900 to-cyan-950 hover:border-cyan-300 border border-cyan-500/50 text-cyan-300 hover:text-white text-xs font-mono uppercase tracking-wider font-bold flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:shadow-[0_0_25px_rgba(6,182,212,0.45)] cursor-pointer"
+                    className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 text-black text-xs font-mono uppercase tracking-wider font-bold flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(245,158,11,0.35)] hover:shadow-[0_0_30px_rgba(245,158,11,0.55)] cursor-pointer"
                   >
-                    <Send className="w-3.5 h-3.5 text-cyan-400" />
+                    <Send className="w-3.5 h-3.5 text-black" />
                     <span>
                       {language === 'id' ? `KLAIM ${tier.lot} SEKARANG` : `CLAIM ${tier.lot} NOW`}
                     </span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-black opacity-80" />
                   </a>
                 </div>
               </div>

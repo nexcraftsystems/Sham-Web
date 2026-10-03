@@ -76,8 +76,8 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
         {/* Section Top Header with right-aligned "01 // PROCESS" */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 pb-6 border-b border-white/8">
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-mono text-cyan-400 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-mono text-amber-400 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
               <span>{t.tag}</span>
             </div>
             <h2 className="font-syncopate text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white uppercase">
@@ -94,7 +94,7 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
                 href={TELEGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-950/70 hover:bg-cyan-900/70 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-950/70 hover:bg-amber-900/70 border border-amber-500/30 text-amber-300 text-xs font-mono uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(245,158,11,0.15)] hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>{t.contactAdmin}</span>
@@ -104,29 +104,29 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
           </div>
         </div>
 
-        {/* 3-Column Grid of 3D Tilt Cards with cyan glow in top-right corner */}
+        {/* 3-Column Grid of 3D Tilt Cards with gold glow in top-right corner */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {t.steps.map((step, idx) => {
             const Icon = stepIcons[idx];
 
             return (
               <TiltCard key={idx} className="reveal-division">
-                <div className="relative h-full p-8 rounded-2xl glass-panel border border-white/8 hover:border-cyan-500/40 transition-colors flex flex-col justify-between overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                  {/* Top-Right Cyan Glow (blur-2xl from template) */}
-                  <div className="w-32 h-32 bg-cyan-500/15 rounded-full blur-2xl absolute -top-10 -right-10 pointer-events-none" />
+                <div className="relative h-full p-8 rounded-2xl glass-panel border border-white/8 hover:border-amber-500/40 transition-colors flex flex-col justify-between overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                  {/* Top-Right Gold Glow */}
+                  <div className="w-32 h-32 bg-amber-500/15 rounded-full blur-2xl absolute -top-10 -right-10 pointer-events-none" />
 
                   <div>
                     {/* Step Index & Icon */}
                     <div className="flex items-center justify-between pb-5 border-b border-white/8 mb-6">
-                      <span className="font-syncopate text-2xl md:text-3xl font-bold text-cyan-400 tracking-wider">
+                      <span className="font-syncopate text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-yellow-500 tracking-wider">
                         {step.num}
                       </span>
-                      <div className="w-10 h-10 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                      <div className="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-500/30 flex items-center justify-center text-amber-400">
                         <Icon className="w-5 h-5" />
                       </div>
                     </div>
 
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400/80 px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/20 inline-block mb-3">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-amber-300/90 px-2 py-0.5 rounded bg-amber-950/40 border border-amber-500/25 inline-block mb-3">
                       {step.iconText}
                     </span>
 
@@ -146,9 +146,9 @@ export function HowToClaim({ onOpenTelegram, onOpenRegister }: HowToClaimProps) 
                       <button
                         type="button"
                         onClick={handleTelegramClick}
-                        className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-semibold cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-semibold cursor-pointer"
                       >
-                        <span>{language === 'id' ? 'Klaim di Telegram' : 'Claim on Telegram'}</span>
+                        <span>{t.adminUser}</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
                     ) : (

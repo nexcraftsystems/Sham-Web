@@ -135,11 +135,11 @@ export function XauusdCandlestickBackground({
       }
       ctx.setLineDash([]);
 
-      // Draw Candlesticks (Green for bullish, Red for bearish with cyber tone)
-      const bullishGreen = 'rgba(34, 197, 94, 0.55)'; // Bullish emerald
-      const bearishRed = 'rgba(239, 68, 68, 0.55)'; // Bearish coral red
-      const bullishWick = 'rgba(34, 197, 94, 0.75)';
-      const bearishWick = 'rgba(239, 68, 68, 0.75)';
+      // Draw Candlesticks (Gold for bullish, Silver/Slate for bearish)
+      const bullishGold = 'rgba(245, 158, 11, 0.62)'; // Bullish gold
+      const bearishSilver = 'rgba(148, 163, 184, 0.55)'; // Bearish silver/slate
+      const bullishWick = 'rgba(251, 191, 36, 0.85)';
+      const bearishWick = 'rgba(226, 232, 240, 0.75)';
 
       const volumeBaseY = height - 10;
       const maxVolumeHeight = height * 0.12;
@@ -151,7 +151,7 @@ export function XauusdCandlestickBackground({
         if (x < -candleWidth || x > width + candleWidth) continue;
 
         const isUp = candle.close >= candle.open;
-        const bodyColor = isUp ? bullishGreen : bearishRed;
+        const bodyColor = isUp ? bullishGold : bearishSilver;
         const wickColor = isUp ? bullishWick : bearishWick;
 
         const openY = priceToY(candle.open);
@@ -181,7 +181,7 @@ export function XauusdCandlestickBackground({
 
         // Bottom volume bar
         const volHeight = (candle.volume / 100) * maxVolumeHeight;
-        ctx.fillStyle = isUp ? 'rgba(34, 197, 94, 0.18)' : 'rgba(239, 68, 68, 0.18)';
+        ctx.fillStyle = isUp ? 'rgba(245, 158, 11, 0.22)' : 'rgba(148, 163, 184, 0.2)';
         ctx.fillRect(x, volumeBaseY - volHeight, candleWidth, volHeight);
       }
 
@@ -192,7 +192,7 @@ export function XauusdCandlestickBackground({
 
       ctx.save();
       ctx.setLineDash([3, 4]);
-      ctx.strokeStyle = isLiveUp ? 'rgba(34, 197, 94, 0.5)' : 'rgba(239, 68, 68, 0.5)';
+      ctx.strokeStyle = isLiveUp ? 'rgba(245, 158, 11, 0.65)' : 'rgba(226, 232, 240, 0.5)';
       ctx.lineWidth = 1.2;
       ctx.beginPath();
       ctx.moveTo(0, activePriceY);
@@ -206,7 +206,7 @@ export function XauusdCandlestickBackground({
       const tagX = width - tagWidth - 8;
       const tagY = activePriceY - tagHeight / 2;
 
-      ctx.fillStyle = isLiveUp ? 'rgba(22, 163, 74, 0.85)' : 'rgba(220, 38, 38, 0.85)';
+      ctx.fillStyle = isLiveUp ? 'rgba(217, 119, 6, 0.9)' : 'rgba(100, 116, 139, 0.9)';
       ctx.beginPath();
       ctx.roundRect(tagX, tagY, tagWidth, tagHeight, 4);
       ctx.fill();

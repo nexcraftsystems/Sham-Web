@@ -29,9 +29,9 @@ export function Hero({ onOpenTelegram }: HeroProps) {
       {/* Hero Typography & CTAs (Full Width, Grand Presence) */}
       <div className="reveal-division relative z-10 max-w-4xl space-y-7 mb-14">
         {/* Hero Title: TRADE & CLAIM X SELF REBATE 10USD */}
-        <h1 className="font-syncopate font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter text-white drop-shadow-[0_0_25px_rgba(6,182,212,0.35)] leading-[1.05] sm:leading-[0.98] break-words">
+        <h1 className="font-syncopate font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter text-white drop-shadow-[0_0_25px_rgba(245,158,11,0.35)] leading-[1.05] sm:leading-[0.98] break-words">
           TRADE & CLAIM <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-cyan-400 to-emerald-400 drop-shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]">
             X SELF REBATE 10USD
           </span>
         </h1>
@@ -50,7 +50,7 @@ export function Hero({ onOpenTelegram }: HeroProps) {
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-cyan-400 hover:bg-cyan-300 text-black text-xs sm:text-sm font-mono uppercase tracking-widest font-bold transition-all shadow-[0_0_30px_rgba(6,182,212,0.5)] hover:shadow-[0_0_40px_rgba(6,182,212,0.7)] hover:scale-105 cursor-pointer text-center"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 text-black text-xs sm:text-sm font-mono uppercase tracking-widest font-bold transition-all shadow-[0_0_30px_rgba(245,158,11,0.45)] hover:shadow-[0_0_40px_rgba(245,158,11,0.65)] hover:scale-105 cursor-pointer text-center"
           >
             <Send className="w-4 h-4 shrink-0 text-black" />
             <span>{language === 'id' ? 'Klaim di Telegram Sekarang' : 'Claim on Telegram Now'}</span>
@@ -62,9 +62,9 @@ export function Hero({ onOpenTelegram }: HeroProps) {
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full glass-panel hover:bg-cyan-950/40 border border-white/10 text-slate-300 hover:text-white text-xs sm:text-sm font-mono uppercase tracking-wider transition-all hover:scale-102 cursor-pointer text-center"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full glass-panel hover:bg-slate-900/60 border border-slate-300/25 text-slate-300 hover:text-white text-xs sm:text-sm font-mono uppercase tracking-wider transition-all hover:scale-102 cursor-pointer text-center"
           >
-            <Send className="w-4 h-4 text-cyan-400 shrink-0" />
+            <Send className="w-4 h-4 text-amber-400 shrink-0" />
             <span>{t.joinChannel}</span>
           </a>
         </div>
@@ -74,11 +74,11 @@ export function Hero({ onOpenTelegram }: HeroProps) {
           {/* Card 1: Self Rebate 10USD */}
           <div
             onClick={handleDirectTelegram}
-            className="reveal-division glass-panel p-4 rounded-2xl border border-cyan-500/25 hover:border-cyan-400 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.1)] group"
+            className="reveal-division glass-panel p-4 rounded-2xl border border-amber-500/25 hover:border-amber-400 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.1)] group"
           >
-            <div className="flex items-center justify-between text-cyan-400 mb-1.5">
+            <div className="flex items-center justify-between text-amber-400 mb-1.5">
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 fill-cyan-400 shrink-0" />
+                <Zap className="w-4 h-4 fill-amber-400 shrink-0" />
                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
                   Self Rebate Program
                 </span>
@@ -88,7 +88,7 @@ export function Hero({ onOpenTelegram }: HeroProps) {
             <div className="text-base sm:text-lg font-bold font-mono text-white">
               USD 10 / LOT
             </div>
-            <span className="text-[11px] text-cyan-300 font-mono block mt-0.5">
+            <span className="text-[11px] text-amber-300 font-mono block mt-0.5">
               Self Rebate 10USD →
             </span>
           </div>
@@ -96,21 +96,21 @@ export function Hero({ onOpenTelegram }: HeroProps) {
           {/* Card 2: VIP Indicator Suite Worth 10K USD in TradingView */}
           <div
             onClick={handleDirectTelegram}
-            className="reveal-division glass-panel p-4 rounded-2xl border border-cyan-500/25 hover:border-cyan-400 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.1)] group"
+            className="reveal-division glass-panel p-4 rounded-2xl border border-slate-300/25 hover:border-slate-300 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(226,232,240,0.1)] group"
           >
-            <div className="flex items-center justify-between text-cyan-400 mb-1.5">
+            <div className="flex items-center justify-between text-slate-300 mb-1.5">
               <div className="flex items-center gap-2">
-                <Bot className="w-4 h-4 shrink-0" />
-                <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400">
+                <Bot className="w-4 h-4 shrink-0 text-slate-300" />
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
                   TradingView Ready
                 </span>
               </div>
               <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <div className="text-base sm:text-lg font-bold font-mono text-cyan-300">
+            <div className="text-base sm:text-lg font-bold font-mono text-slate-100">
               WORTH 10K USD
             </div>
-            <span className="text-[11px] text-emerald-400 font-mono block mt-0.5">
+            <span className="text-[11px] text-amber-400 font-mono block mt-0.5">
               {language === 'id' ? 'Free Trial di TradingView →' : 'Free Trial in TradingView →'}
             </span>
           </div>
@@ -118,9 +118,9 @@ export function Hero({ onOpenTelegram }: HeroProps) {
           {/* Card 3: Luxury Prize Milestones */}
           <div
             onClick={handleDirectTelegram}
-            className="reveal-division glass-panel p-4 rounded-2xl border border-cyan-500/40 hover:border-cyan-300 hover:bg-cyan-950/40 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.15)] group"
+            className="reveal-division glass-panel p-4 rounded-2xl border border-amber-500/35 hover:border-amber-400 hover:bg-amber-950/30 transition-all hover:scale-102 cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.15)] group"
           >
-            <div className="flex items-center justify-between text-cyan-400 mb-1.5">
+            <div className="flex items-center justify-between text-amber-400 mb-1.5">
               <div className="flex items-center gap-1.5">
                 <Trophy className="w-4 h-4 shrink-0 animate-pulse text-amber-400" />
                 <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
@@ -140,20 +140,20 @@ export function Hero({ onOpenTelegram }: HeroProps) {
       </div>
 
       {/* FULL HERO PRIZE SHOWCASE - FULL COLOR, VIBRANT, MODERN */}
-      <div className="reveal-division relative z-10 rounded-3xl overflow-hidden glass-panel border border-cyan-500/30 shadow-[0_0_35px_rgba(6,182,212,0.18)]">
+      <div className="reveal-division relative z-10 rounded-3xl overflow-hidden glass-panel border border-amber-500/30 shadow-[0_0_35px_rgba(245,158,11,0.18)]">
         {/* Top HUD Frame Bar */}
         <div className="px-5 py-3.5 bg-black/75 border-b border-white/10 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
             <span className="text-[11px] font-mono uppercase tracking-widest text-slate-200 font-bold">
               OFFICIAL PRIZE SHOWCASE · ALL 5 TIERS INCLUDED
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono uppercase text-cyan-300 bg-cyan-950/80 border border-cyan-500/40 px-2.5 py-1 rounded-full font-bold shadow-sm">
+            <span className="text-[10px] font-mono uppercase text-amber-300 bg-amber-950/80 border border-amber-500/40 px-2.5 py-1 rounded-full font-bold shadow-sm">
               SELF REBATE 10USD
             </span>
-            <span className="text-[10px] font-mono uppercase text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-1 rounded-full font-bold shadow-sm">
+            <span className="text-[10px] font-mono uppercase text-slate-200 bg-slate-900/80 border border-slate-400/40 px-2.5 py-1 rounded-full font-bold shadow-sm">
               WORTH 10K USD INDICATOR
             </span>
           </div>

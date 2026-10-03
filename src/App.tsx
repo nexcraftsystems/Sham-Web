@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigation } from './components/Navigation';
+import { SpecialOfferBanner } from './components/SpecialOfferBanner';
 import { Hero } from './components/Hero';
 import { TechMarquee } from './components/TechMarquee';
 import { HowToClaim } from './components/HowToClaim';
@@ -23,7 +24,7 @@ export default function App() {
 
   return (
     <LanguageProvider>
-      <div className="relative min-h-screen bg-[#030303] text-slate-300 font-['Inter'] antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+      <div className="relative min-h-screen bg-[#030303] text-slate-300 font-['Inter'] antialiased overflow-x-hidden selection:bg-amber-400 selection:text-black">
         {/* Custom Trailing Glowing Cyan Cursor */}
         <CustomCursor cursorText={cursorText} />
 
@@ -40,6 +41,11 @@ export default function App() {
 
         {/* Fixed Layer 50: Top Sticky Navigation */}
         <Navigation
+          onOpenTelegram={handleDirectTelegram}
+        />
+
+        {/* Special Offer Alert Banner: TRADE & CLAIM X SELF REBATE 10USD + 10k Indicator in TradingView */}
+        <SpecialOfferBanner
           onOpenTelegram={handleDirectTelegram}
         />
 
