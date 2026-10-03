@@ -173,17 +173,8 @@ export function Hero({ onOpenTelegram }: HeroProps) {
             referrerPolicy="no-referrer"
           />
 
-          {/* Soft Bottom Gradient Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/90 via-transparent to-transparent pointer-events-none" />
-
-          {/* Floating Live Badge on Image */}
-          <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto flex flex-wrap items-center gap-2 pointer-events-none">
-            <span className="px-4 py-2 rounded-full bg-black/85 backdrop-blur-md border border-cyan-500/50 text-white text-[11px] font-mono flex items-center gap-2.5 shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:border-cyan-400 transition-colors">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-semibold">Cash 2.2Jt · iPad 11 · iPhone 17 · MacBook Neo + 17Jt · SELF REBATE 10USD</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-cyan-400" />
-            </span>
-          </div>
+          {/* Gentle Bottom Gradient Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none rounded-xl" />
         </a>
       </div>
     </section>
